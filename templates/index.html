@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Temperature Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet Heat plugin for dynamic temperature visualization -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1><i class="fas fa-thermometer-half"></i> Global Temperature Map</h1>
+                <div class="header-controls">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Search location..." />
+                        <button id="searchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <button id="locationBtn" title="Use current location">
+                        <i class="fas fa-location-arrow"></i>
+                    </button>
+                    <button id="settingsBtn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hamburger Menu Button -->
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Menu Overlay -->
+        <div class="menu-overlay" id="menuOverlay"></div>
+
+        <!-- Slide-out Menu -->
+        <nav class="slide-menu" id="slideMenu">
+            <div class="menu-header">
+                <h2>Settings</h2>
+                <button class="close-menu" id="closeMenu" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="menu-content">
+                <!-- Map Style -->
+                <div class="menu-section">
+                    <h3>Map Style</h3>
+                    <div class="layer-options">
+                        <label class="layer-option">
+                            <input type="radio" name="baseLayer" value="osm" checked>
+                            <div class="option-content">
+                                <i class="fas fa-map"></i>
+                                <span>OpenStreetMap</span>
+                            </div>
+                        </label>
+                        <label class="layer-option">
+                            <input type="radio" name="baseLayer" value="satellite">
+                            <div class="option-content">
+                                <i class="fas fa-satellite"></i>
+                                <span>Satellite</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Temperature Overlay -->
+                <div class="menu-section">
+                    <h3>Temperature</h3>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="temperatureOverlay" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label">Show Temperature</span>
+                    </label>
+                    <div class="opacity-control-wrapper">
+                        <label class="opacity-label">Opacity</label>
+                        <input type="range" min="0" max="100" value="40" class="modern-slider" id="tempOpacity">
+                        <span class="opacity-display" id="opacityValue">40%</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Map Container -->
+        <div id="map"></div>
+        
+        <!-- Loading Indicator -->
+        <div id="loadingIndicator" class="loading-indicator">
+            <i class="fas fa-spinner fa-spin"></i> Loading...
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

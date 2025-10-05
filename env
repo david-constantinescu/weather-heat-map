@@ -1,0 +1,20 @@
+# Weather Map Application Environment Variables
+
+# OpenWeatherMap API Key (Required)
+# Get your free API key at: https://openweathermap.org/api
+OPENWEATHER_API_KEY=17f35b441d994f24954faa231dcc1755
+
+# NASA API Key (Optional)
+# Get your free API key at: https://api.nasa.gov/
+NASA_API_KEY=T1zlTFFqU9C8MXd1yBh1NHePbrAzg3eQDNOmDSIP
+
+# Redis Configuration (Optional)
+# If not set, application will use memory caching
+REDIS_URL=redis://localhost:6379/0
+
+# Flask Configuration
+FLASK_ENV=development
+FLASK_DEBUG=True
+
+# Application Settings
+SECRET_KEY=7e8868b732d85df9c439629dc0b0732dcbbae8fb22ea4d8ebae71374fd4e91bd
